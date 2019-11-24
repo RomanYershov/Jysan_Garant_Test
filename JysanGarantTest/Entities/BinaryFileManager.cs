@@ -11,7 +11,8 @@ namespace JysanGarantTest.Entities
 {
    public  class BinaryFileManager : FileManager
     {
-        BinaryFormatter formatter = new BinaryFormatter();
+        private readonly BinaryFormatter formatter;
+        public BinaryFileManager() => formatter = new BinaryFormatter();
         public override void Write(string path, IEnumerable<Partner> partners)
         {
             using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate))

@@ -9,7 +9,7 @@ namespace JysanGarantTest.Entities
 {
     public class FileManagerExecutor
     {
-        private FileManager _file;
+        private readonly FileManager _file;
         public FileManagerExecutor(FileManager fileManager) => _file = fileManager;
 
         public void Write(string path, IEnumerable<Partner> partners)

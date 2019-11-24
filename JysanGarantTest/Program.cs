@@ -15,14 +15,13 @@ namespace JysanGarantTest
         private const string _path = @"c:\temp\partners.txt";
         static void Main(string[] args)
         {
-
-            var fileExecutor = new FileManagerExecutor(new SimpleFileManager());
-
-            var partners = Initial();
-            fileExecutor.Write(_path, partners);
-
             try
             {
+                var fileExecutor = new FileManagerExecutor(new SimpleFileManager());
+
+                var partners = Initial();
+                fileExecutor.Write(_path, partners);
+
                 var contragents = fileExecutor.Read(_path);
                 var individuals = contragents.Where(x => x is Individual).OrderBy(x => ((Individual)x).LastName)
                                                                           .ThenBy(x => ((Individual)x).FirstName);
@@ -53,7 +52,7 @@ namespace JysanGarantTest
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
 
 
@@ -87,7 +86,6 @@ namespace JysanGarantTest
                     CreationDate = DateTime.Now.AddDays(-(i + 1)),
                     Iin = $"11112222333{i}",
                     Name = $"Name_{i + 1}"
-                    // ContactIndividuals = new List<Individual>() { individuals[i], individuals[i + i], individuals[i + i + 1] }
                 };
                 partners.Add(legalEntity);
             }
